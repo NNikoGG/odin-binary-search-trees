@@ -36,6 +36,33 @@ class Tree {
 
     return node;
   }
+
+  // Insert new value to the BST
+  insert(value) {
+    let newNode = new Node(value);
+    if (this.root === null) {
+      this.root = newNode;
+    } else {
+      this.insertNode(this.root, newNode);
+    }
+  }
+
+  // If root is not empty
+  insertNode(node, newNode) {
+    if (newNode.data < node.data) {
+      if (node.left === null) {
+        node.left = newNode;
+      } else {
+        this.insertNode(node.left, newNode);
+      }
+    } else {
+      if (node.right === null) {
+        node.right = newNode;
+      } else {
+        this.insertNode(node.right, newNode);
+      }
+    }
+  }
 }
 
 // Visualize BST
@@ -53,5 +80,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 const t1 = new Tree();
-t1.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+t1.buildTree([6, 9, 3, 1, 2, 13, 11]);
+t1.insert(5);
+// t1.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 prettyPrint(t1.root);
+console.log(t1.root);
