@@ -111,6 +111,19 @@ class Tree {
       return this.minNode(node.left);
     }
   }
+
+  // Find node with value
+  find(value, node = this.root) {
+    if (node === null) {
+      return null;
+    } else if (value == node.data) {
+      return node;
+    } else if (value < node.data) {
+      return this.find(value, node.left);
+    } else if (value > node.data) {
+      return this.find(value, node.right);
+    }
+  }
 }
 
 // Visualize BST
@@ -135,3 +148,4 @@ t1.deleteItem(6);
 // t1.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 prettyPrint(t1.root);
 console.log(t1.root);
+console.log(t1.find(5));
