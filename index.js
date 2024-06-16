@@ -124,6 +124,25 @@ class Tree {
       return this.find(value, node.right);
     }
   }
+
+  // Level order traversal
+  levelOrder(callback) {
+    if (!this.root) return [];
+    let que = [this.root];
+    let results = [];
+    while (que.length) {
+      let node = que.shift();
+      if (callback) {
+        callback(node);
+      } else {
+        results.push(node.data);
+      }
+
+      if (node.left) que.push(node.left);
+      if (node.right) que.push(node.right);
+    }
+    return callback ? undefined : results;
+  }
 }
 
 // Visualize BST
@@ -149,3 +168,4 @@ t1.deleteItem(6);
 prettyPrint(t1.root);
 console.log(t1.root);
 console.log(t1.find(5));
+console.log(t1.levelOrder());
