@@ -165,6 +165,25 @@ class Tree {
     }
     return results;
   }
+
+  // Pre order traversal
+  preOrder(callback) {
+    if (!this.root) return [];
+    let stack = [];
+    let results = [];
+    stack.push(this.root);
+    while (stack.length > 0) {
+      let node = stack.pop();
+      if (callback) {
+        callback(node);
+      } else {
+        results.push(node.data);
+      }
+      if (node.right !== null) stack.push(node.right);
+      if (node.left !== null) stack.push(node.left);
+    }
+    return results;
+  }
 }
 
 // Visualize BST
@@ -192,3 +211,4 @@ console.log(t1.root);
 console.log(t1.find(5));
 console.log(t1.levelOrder());
 console.log(t1.inOrder()); // 1,2,3,5,9,11,13
+console.log(t1.preOrder()); // 9,2,1,3,5,11,13
