@@ -220,6 +220,21 @@ class Tree {
     let rightHeight = this.height(node.right);
     return Math.max(leftHeight, rightHeight) + 1;
   }
+
+  // Depth of given node
+  depth(node = this.root, target, depth = 0) {
+    if (node === null) return -1;
+    if (node === target) return depth;
+    let leftDepth = this.depth(node.left, target, depth + 1);
+    if (leftDepth !== -1) {
+      return leftDepth;
+    }
+    let rightDepth = this.depth(node.right, target, depth + 1);
+    if (rightDepth !== -1) {
+      return rightDepth;
+    }
+    return -1;
+  }
 }
 
 // Visualize BST
