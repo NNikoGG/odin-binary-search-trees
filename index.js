@@ -235,6 +235,23 @@ class Tree {
     }
     return -1;
   }
+
+  // Check if tree is balanced
+  isBalanced() {
+    let node = this.root;
+    const checkBalance = (node) => {
+      if (node === null) return 0;
+      let left = checkBalance(node.left);
+      let right = checkBalance(node.right);
+
+      if (left == -1 || right == -1 || Math.abs(left - right) > 1) {
+        return -1;
+      } else {
+        return Math.max(left, right) + 1;
+      }
+    };
+    return checkBalance(node) !== -1;
+  }
 }
 
 // Visualize BST
@@ -265,3 +282,5 @@ console.log(t1.inOrder()); // 1,2,3,5,9,11,13
 console.log(t1.preOrder()); // 9,2,1,3,5,11,13
 console.log(t1.postOrder()); // 1,5,3,2,13,11,9
 console.log(t1.height());
+console.log(t1.depth());
+console.log(t1.isBalanced());
