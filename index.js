@@ -212,6 +212,14 @@ class Tree {
     }
     return results;
   }
+
+  // Height of given node
+  height(node = this.root) {
+    if (node === null) return 0;
+    let leftHeight = this.height(node.left);
+    let rightHeight = this.height(node.right);
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
 }
 
 // Visualize BST
@@ -241,3 +249,4 @@ console.log(t1.levelOrder());
 console.log(t1.inOrder()); // 1,2,3,5,9,11,13
 console.log(t1.preOrder()); // 9,2,1,3,5,11,13
 console.log(t1.postOrder()); // 1,5,3,2,13,11,9
+console.log(t1.height());
