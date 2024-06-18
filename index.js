@@ -252,6 +252,12 @@ class Tree {
     };
     return checkBalance(node) !== -1;
   }
+
+  // Rebalance tree
+  rebalance() {
+    let array = this.inOrder();
+    this.root = this.buildBalancedTree(array, 0, array.length - 1);
+  }
 }
 
 // Visualize BST
@@ -269,18 +275,21 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 const t1 = new Tree();
-t1.buildTree([6, 9, 3, 1, 2, 13, 11]);
-t1.insert(5);
-prettyPrint(t1.root);
-t1.deleteItem(6);
-// t1.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-prettyPrint(t1.root);
-console.log(t1.root);
-console.log(t1.find(5));
-console.log(t1.levelOrder());
-console.log(t1.inOrder()); // 1,2,3,5,9,11,13
-console.log(t1.preOrder()); // 9,2,1,3,5,11,13
-console.log(t1.postOrder()); // 1,5,3,2,13,11,9
-console.log(t1.height());
-console.log(t1.depth());
+t1.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67]);
 console.log(t1.isBalanced());
+console.log(t1.levelOrder());
+console.log(t1.preOrder());
+console.log(t1.postOrder());
+console.log(t1.inOrder());
+t1.insert(6345);
+t1.insert(324);
+t1.insert(478);
+t1.insert(732);
+t1.insert(298);
+console.log(t1.isBalanced());
+t1.rebalance();
+console.log(t1.isBalanced());
+console.log(t1.levelOrder());
+console.log(t1.preOrder());
+console.log(t1.postOrder());
+console.log(t1.inOrder());
